@@ -1,0 +1,56 @@
+.sidebarContainer {
+  display: flex;
+  flex-direction: column;
+  line-height: 17px;
+  height: 100%;
+  border: none;
+  color: #4e5a70;
+  box-sizing: border-box;
+  .sidebarHeader {
+    position: relative;
+    padding: 40px 0;
+    width: 100%;
+    text-align: center;
+  }
+  .expandLayout {
+    position: relative;
+    min-height: 360px;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    .sidebarOperate {
+      position: relative;
+      padding: 10px 0;
+      height: 40px;
+      border: none;
+      box-shadow: none;
+      text-align: center;
+    }
+    .sidebarContent {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin-top: 12px;
+      padding-bottom: 10px;
+      width: 100%;
+      font-size: 14px;
+    }
+    .siderbarFooter {
+      height: 90px;
+    }
+  }
+}
+
+
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}

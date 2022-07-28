@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  height: 100%;
+}
+
+/* antd global */
+#root .ant-layout {
+  width: 100%;
+  min-height: 100%;
+}
+
+#root .ant-layout-sider-trigger {
+  background: #f9fafb;
+}

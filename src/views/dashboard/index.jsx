@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-07-13 14:11:55
  * @LastEditors: KAAN
- * @LastEditTime: 2022-07-13 14:48:40
+ * @LastEditTime: 2022-07-13 15:38:42
  * @Descripttion: 
  */
 
@@ -11,11 +11,14 @@ import { Outlet } from 'react-router-dom';
 
 import DashboardNav from './../../components/dashboard/dashboard-nav';
 
+// antd
+import { Layout } from 'antd';
+
 export default function Dashboard() {
   return (
-    <div>
+    <Layout>
       <DashboardNav></DashboardNav>
       <Outlet></Outlet>
-    </div>
+    </Layout>
   );
 };
