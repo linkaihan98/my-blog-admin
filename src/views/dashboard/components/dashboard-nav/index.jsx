@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-07-13 14:48:11
  * @LastEditors: KAAN
- * @LastEditTime: 2022-07-13 16:13:24
+ * @LastEditTime: 2022-08-02 18:07:38
  * @Descripttion: 
  */
 
@@ -40,10 +40,10 @@ const getItem = (label, key, icon, children, type) => {
 
 // antd: Menu - 菜单配置表
 const items = [
-  getItem('最近', 'recent', <MailOutlined />),
-  getItem('收藏', 'collection', <PieChartOutlined />),
+  getItem('文章', 'editor', <MailOutlined />),
   getItem('归档', 'category', <DesktopOutlined />),
-  getItem('标签', 'tag', <ContainerOutlined />),
+  getItem('标签', 'tags', <ContainerOutlined />),
+  getItem('图表', 'charts', <PieChartOutlined />),
 ];
 
 

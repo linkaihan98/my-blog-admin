@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-07-12 09:35:36
  * @LastEditors: KAAN
- * @LastEditTime: 2022-07-13 14:46:01
+ * @LastEditTime: 2022-08-02 15:19:47
  * @Descripttion: 
  */
 
@@ -21,19 +21,23 @@ export default function MRouter() {
       children: [
         {
           path: '',
-          element: <Navigate to="/dashboard/recent" />
+          element: <Navigate to="/dashboard/editor" />
         },
         {
-          path: 'recent',
-          element: LazyloadComp('dashboard/recent')
-        },
-        {
-          path: 'collection',
-          element: LazyloadComp('dashboard/collection')
+          path: 'editor',
+          element: LazyloadComp('editor')
         },
         {
           path: 'category',
-          element: LazyloadComp('dashboard/category')
+          element: LazyloadComp('category')
+        },
+        {
+          path: 'tags',
+          element: LazyloadComp('tags')
+        },
+        {
+          path: 'charts',
+          element: LazyloadComp('charts')
         },
       ]
     },
