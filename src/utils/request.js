@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-09-01 15:33:34
  * @LastEditors: KAAN
- * @LastEditTime: 2022-09-01 16:07:36
+ * @LastEditTime: 2022-09-01 20:08:13
  * @Descripttion: 
  */
 
@@ -28,21 +28,23 @@ axios.interceptors.request.use(
 
 /** 
  * response响应拦截器
- * response code=0后端处理请求失败，code=1成功
  */
 axios.interceptors.response.use(
   res => {
     console.log(res, "axios");
 
+    // code=0后端处理请求失败，code=1成功
+    const responseCode = res.data.code || null;
+
     // 请求成功但不能操作
-    if (res.code === 0) {
+    if (responseCode === 0) {
       // 弹出操作错误信息
       notification.error({
         message: res.message,
         description: res.message,
       });
       return;
-    } else if (res.code === 1) {
+    } else if (responseCode === 1) {
       console.log(res.data, "res.data");
       // 返回请求结果
       return res;

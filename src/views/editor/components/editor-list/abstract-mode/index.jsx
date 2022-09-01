@@ -2,12 +2,14 @@
  * @Author: KAAN
  * @Date: 2022-08-29 15:53:16
  * @LastEditors: KAAN
- * @LastEditTime: 2022-09-01 16:40:41
+ * @LastEditTime: 2022-09-01 20:17:06
  * @Descripttion: 加载文章列表，显示标题简要
  */
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { getArticles } from '@/api';
 
 import styles from './index.module.scss';
 // antd
@@ -18,36 +20,24 @@ import {
   SortAscendingOutlined
 } from '@ant-design/icons';
 
-// test data
-const data = [
-  {
-    id: '1',
-    title: 'Ant Design Title 1',
-    abs: 'abs1abs1abs1abs1abs1abs1abs1abs1abs1abs1abs1',
-  },
-  {
-    id: '2',
-    title: 'Ant Design Title 2',
-    abs: 'abs1abs1abs1abs1abs1abs1abs1abs1abs1abs1abs1',
-  },
-  {
-    id: '3',
-    title: 'Ant Design Title 3',
-    abs: 'abs1abs1abs1abs1abs1abs1abs1abs1abs1abs1abs1',
-  },
-  {
-    id: '4',
-    title: 'Ant Design Title 4',
-    abs: 'abs1abs1abs1abs1abs1abs1abs1abs1abs1abs1abs1',
-  },
-];
+// test data [array]
+// 已删除
 
 export default function AbstractMode() {
 
+  const [articleList, setArticleList] = useState([]);
   const [isHover, setIsHover] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
-  // const [active, setActive] = useState(styles.active);
 
+  
+  // 获取文章列表列表数据
+  const getArticleList = () => {
+    getArticles().then((res) => {
+      // console.log(res.data.articles, "articles");
+      setArticleList(res.data.articles);
+    });
+  };
+  
   const handleMouseEnter = (id) => {
     setIsHover(id);
   };
@@ -63,13 +53,13 @@ export default function AbstractMode() {
   };
 
   useEffect(() => {
-    
+    getArticleList();
   }, [])
 
   return (
     <List
       itemLayout="horizontal"
-      dataSource={data}
+      dataSource={articleList}
       className={styles.listMode}
       renderItem={(item) => (
         <List.Item
@@ -84,7 +74,7 @@ export default function AbstractMode() {
         >
           <List.Item.Meta
             title={item.title}
-            description={item.abs}
+            description={item.summary}
           />
         </List.Item>
       )}
