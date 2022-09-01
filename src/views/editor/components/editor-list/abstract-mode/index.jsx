@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-08-29 15:53:16
  * @LastEditors: KAAN
- * @LastEditTime: 2022-09-01 14:57:13
+ * @LastEditTime: 2022-09-01 16:40:41
  * @Descripttion: 加载文章列表，显示标题简要
  */
 
@@ -63,7 +63,7 @@ export default function AbstractMode() {
   };
 
   useEffect(() => {
-
+    
   }, [])
 
   return (
