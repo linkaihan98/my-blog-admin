@@ -3,7 +3,24 @@
     margin: 0 11px 0 12px;
     padding: 15px 8px;
     box-sizing: border-box;
+    border-radius: 4px;
     overflow: hidden;
+    .noteTitle {
+      height: 22px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .noteAbstract {
+      line-height: 20px;
+      font-size: 14px;
+      margin: 4px 0 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   .active {
     background-color: #f1f2f3;

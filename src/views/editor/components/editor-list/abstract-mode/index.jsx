@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-08-29 15:53:16
  * @LastEditors: KAAN
- * @LastEditTime: 2022-09-01 20:17:06
+ * @LastEditTime: 2022-09-05 18:21:01
  * @Descripttion: 加载文章列表，显示标题简要
  */
 
@@ -73,8 +73,18 @@ export default function AbstractMode() {
           onClick={() => handleClick(item.id)}
         >
           <List.Item.Meta
-            title={item.title}
-            description={item.summary}
+            title={
+              <div className={styles.noteTitle}>
+                <span>{item.title}</span>
+              </div>
+            }
+            description={
+              item.summary ? (
+                <div className={styles.noteAbstract}>
+                  <span>{item.summary}{item.summary}{item.summary}</span>
+                </div>
+              ) : null
+            }
           />
         </List.Item>
       )}
