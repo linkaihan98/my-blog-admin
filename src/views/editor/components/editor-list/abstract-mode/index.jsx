@@ -2,14 +2,14 @@
  * @Author: KAAN
  * @Date: 2022-08-29 15:53:16
  * @LastEditors: KAAN
- * @LastEditTime: 2022-09-05 18:21:01
+ * @LastEditTime: 2022-09-15 16:24:31
  * @Descripttion: 加载文章列表，显示标题简要
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getArticles } from '@/api';
+// import { getArticles } from '@/api';
 
 import styles from './index.module.scss';
 // antd
@@ -20,23 +20,25 @@ import {
   SortAscendingOutlined
 } from '@ant-design/icons';
 
+import { EditorContext } from './../../../index.jsx';
+
 // test data [array]
 // 已删除
 
 export default function AbstractMode() {
 
-  const [articleList, setArticleList] = useState([]);
+  // const [articleList, setArticleList] = useState([]);
   const [isHover, setIsHover] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   
-  // 获取文章列表列表数据
-  const getArticleList = () => {
-    getArticles().then((res) => {
-      // console.log(res.data.articles, "articles");
-      setArticleList(res.data.articles);
-    });
-  };
+  // // 获取文章列表列表数据
+  // const getArticleList = () => {
+  //   getArticles().then((res) => {
+  //     // console.log(res.data.articles, "articles");
+  //     setArticleList(res.data.articles);
+  //   });
+  // };
   
   const handleMouseEnter = (id) => {
     setIsHover(id);
@@ -52,42 +54,51 @@ export default function AbstractMode() {
     // navigate(`/dashboard/editor/${id}`);
   };
 
-  useEffect(() => {
-    getArticleList();
-  }, [])
+  // useEffect(() => {
+  //   getArticleList();
+  // }, [])
+
+  const value = useContext(EditorContext);
 
   return (
-    <List
-      itemLayout="horizontal"
-      dataSource={articleList}
-      className={styles.listMode}
-      renderItem={(item) => (
-        <List.Item
-          key={item.id}
-          className={[
-            styles.itemCard,
-            (item.id === isHover || item.id === currentIndex) ? styles.active : '',
-          ]}
-          onMouseEnter={() => handleMouseEnter(item.id)}
-          onMouseLeave={() => handleMouseLeave()}
-          onClick={() => handleClick(item.id)}
-        >
-          <List.Item.Meta
-            title={
-              <div className={styles.noteTitle}>
-                <span>{item.title}</span>
-              </div>
-            }
-            description={
-              item.summary ? (
-                <div className={styles.noteAbstract}>
-                  <span>{item.summary}{item.summary}{item.summary}</span>
-                </div>
-              ) : null
-            }
+    <EditorContext.Consumer>
+      {
+        value=>(
+          <List
+            itemLayout="horizontal"
+            dataSource={value.articleList}
+            className={styles.listMode}
+            renderItem={(item) => (
+              <List.Item
+                key={item.id}
+                className={[
+                  styles.itemCard,
+                  (item.id === isHover || item.id === currentIndex) ? styles.active : '',
+                ]}
+                onMouseEnter={() => handleMouseEnter(item.id)}
+                onMouseLeave={() => handleMouseLeave()}
+                onClick={() => handleClick(item.id)}
+              >
+                <List.Item.Meta
+                  title={
+                    <div className={styles.noteTitle}>
+                      <span>{item.title}</span>
+                    </div>
+                  }
+                  description={
+                    item.summary ? (
+                      <div className={styles.noteAbstract}>
+                        <span>{item.summary}{item.summary}{item.summary}</span>
+                      </div>
+                    ) : null
+                  }
+                />
+              </List.Item>
+            )}
           />
-        </List.Item>
-      )}
-    />
+        )
+      }
+    </EditorContext.Consumer>
+    
   );
 };
